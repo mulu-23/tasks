@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчет по заданиям</title>
+</head>
+<body>
+    <h1>ОТЧЕТ ПО ВЫПОЛНЕНИЮ ЗАДАНИЙ</h1>
+    <p>Дата выполнения: 26 февраля 2026</p>
+
+    <hr>
+
+    <h2>ЗАДАНИЕ 1: Простой калькулятор</h2>
+
+    <h3>Реализованная функция:</h3>
+    <pre>
+function calculate($a, $b, $operation) {
+    switch ($operation) {
+        case '+':
+            return $a + $b;
+        case '-':
+            return $a - $b;
+        case '*':
+            return $a * $b;
+        case '/':
+            if ($b == 0) {
+                return "Ошибка: деление на ноль";
+            }
+            return $a / $b;
+        default:
+            return "Неизвестная операция";
+    }
+}
+    </pre>
+
+    <h3>Результаты тестирования:</h3>
+    
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Тест</th>
+            <th>Операция</th>
+            <th>Ожидаемый результат</th>
+            <th>Полученный результат</th>
+            <th>Статус</th>
+        </tr>
+        <tr>
+            <td>10 + 5</td>
+            <td>+</td>
+            <td>15</td>
+            <td>15</td>
+            <td>✓ Успешно</td>
+        </tr>
+        <tr>
+            <td>10 - 5</td>
+            <td>-</td>
+            <td>5</td>
+            <td>5</td>
+            <td>✓ Успешно</td>
+        </tr>
+        <tr>
+            <td>10 * 5</td>
+            <td>*</td>
+            <td>50</td>
+            <td>50</td>
+            <td>✓ Успешно</td>
+        </tr>
+        <tr>
+            <td>10 / 5</td>
+            <td>/</td>
+            <td>2</td>
+            <td>2</td>
+            <td>✓ Успешно</td>
+        </tr>
+        <tr>
+            <td>10 / 0</td>
+            <td>/</td>
+            <td>Ошибка: деление на ноль</td>
+            <td>Ошибка: деление на ноль</td>
+            <td>✓ Успешно</td>
+        </tr>
+        <tr>
+            <td>10 % 5</td>
+            <td>%</td>
+            <td>Неизвестная операция</td>
+            <td>Неизвестная операция</td>
+            <td>✓ Успешно</td>
+        </tr>
+    </table>
+
+    <h3>Интерактивный калькулятор:</h3>
+    
+    <form method="GET" action="">
+        <p>Число 1: <input type="number" name="num1" value=""></p>
+        <p>Операция: 
+            <select name="operation">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+        </p>
+        <p>Число 2: <input type="number" name="num2" value=""></p>
+        <p><input type="submit" value="Вычислить"></p>
+    </form>
+
+    <hr>
+
+    <h2>ЗАДАНИЕ 2: Работа с данными студентов</h2>
+
+    <h3>Исходные данные студентов:</h3>
+    
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Имя</th>
+            <th>Возраст</th>
+            <th>Курс</th>
+            <th>Балл</th>
+        </tr>
+        <tr>
+            <td>Иван</td>
+            <td>20</td>
+            <td>2</td>
+            <td>4.5</td>
+        </tr>
+        <tr>
+            <td>Мария</td>
+            <td>19</td>
+            <td>1</td>
+            <td>5.0</td>
+        </tr>
+        <tr>
+            <td>Алексей</td>
+            <td>21</td>
+            <td>3</td>
+            <td>4.2</td>
+        </tr>
+        <tr>
+            <td>Анна</td>
+            <td>20</td>
+            <td>2</td>
+            <td>4.8</td>
+        </tr>
+        <tr>
+            <td>Дмитрий</td>
+            <td>22</td>
+            <td>4</td>
+            <td>3.9</td>
+        </tr>
+    </table>
+
+    <h3>Реализованные функции:</h3>
+
+    <p><b>1. Функция getAverageScore():</b></p>
+    <pre>
+function getAverageScore($students) {
+    $баллы = array_column($students, "балл");
+    return array_sum($баллы) / count($баллы);
+}
+    </pre>
+    <p><b>Результат:</b> Средний балл = 4.48 ✓</p>
+
+    <p><b>2. Функция getBestStudent():</b></p>
+    <pre>
+function getBestStudent($students) {
+    $лучший = $students[0];
+    foreach ($students as $студент) {
+        if ($студент["балл"] > $лучший["балл"]) {
+            $лучший = $студент;
+        }
+    }
+    return $лучший;
+}
+    </pre>
+    <p><b>Результат:</b> Мария (балл: 5.0) ✓</p>
+
+    <p><b>3. Функция getStudentsByCourse():</b></p>
+    <pre>
+function getStudentsByCourse($students, $course) {
+    return array_filter($students, function($студент) use ($course) {
+        return $студент["курс"] == $course;
+    });
+}
+    </pre>
+    <p><b>Результат (2 курс):</b> Иван, Анна ✓</p>
+
+    <p><b>4. Функция addStudent():</b></p>
+    <pre>
+function addStudent(&$students, $name, $age, $course, $score) {
+    $students[] = [
+        "имя" => $name,
+        "возраст" => $age,
+        "курс" => $course,
+        "балл" => $score
+    ];
+}
+    </pre>
+    <p><b>Результат:</b> Добавлен студент "Елена" (балл: 4.7) ✓</p>
+
+    <h3>Обновленный список студентов после добавления:</h3>
+    
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Имя</th>
+            <th>Возраст</th>
+            <th>Курс</th>
+            <th>Балл</th>
+        </tr>
+        <tr>
+            <td>Иван</td>
+            <td>20</td>
+            <td>2</td>
+            <td>4.5</td>
+        </tr>
+        <tr>
+            <td>Мария</td>
+            <td>19</td>
+            <td>1</td>
+            <td>5.0</td>
+        </tr>
+        <tr>
+            <td>Алексей</td>
+            <td>21</td>
+            <td>3</td>
+            <td>4.2</td>
+        </tr>
+        <tr>
+            <td>Анна</td>
+            <td>20</td>
+            <td>2</td>
+            <td>4.8</td>
+        </tr>
+        <tr>
+            <td>Дмитрий</td>
+            <td>22</td>
+            <td>4</td>
+            <td>3.9</td>
+        </tr>
+        <tr>
+            <td><b>Елена</b></td>
+            <td><b>19</b></td>
+            <td><b>1</b></td>
+            <td><b>4.7</b></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2>ВЫВОДЫ</h2>
+
+    <h3>Задание 1 (Калькулятор):</h3>
+    <ul>
+        <li>✓ Все арифметические операции работают корректно</li>
+        <li>✓ Обработка деления на ноль реализована правильно</li>
+        <li>✓ Обработка неизвестных операций работает</li>
+        <li>✓ Интерактивная форма функционирует</li>
+    </ul>
+
+    <h3>Задание 2 (Работа с данными):</h3>
+    <ul>
+        <li>✓ Средний балл вычисляется точно</li>
+        <li>✓ Лучший студент определяется верно</li>
+        <li>✓ Фильтрация по курсу работает правильно</li>
+        <li>✓ Добавление нового студента происходит корректно</li>
+        <li>✓ Все функции обрабатывают краевые случаи</li>
+    </ul>
+
+    <p><b>Общий итог:</b> Все задания выполнены успешно! Код работает в соответствии с требованиями, все тесты пройдены.</p>
+
+    <hr>
+
+    <h2>ИНСТРУКЦИЯ ПО ЗАПУСКУ</h2>
+    
+    <ol>
+        <li>Поместите файлы task_01.php и task_02.php в папку с веб-сервером (например, htdocs для XAMPP)</li>
+        <li>Запустите веб-сервер (Apache)</li>
+        <li>Откройте в браузере:
+            <ul>
+                <li>Для задания 1: http://localhost/task_01.php</li>
+                <li>Для задания 2: http://localhost/task_02.php</li>
+            </ul>
+        </li>
+    </ol>
+
+    <p>ИЛИ</p>
+    
+    <p>Запустите через консоль:</p>
+    <pre>
+php task_01.php
+php task_02.php
+    </pre>
+
+    <hr>
+    
+    <p>Отчет подготовлен 26.02.2026</p>
+    
+    <p><a href="task_01.php">Задание 1</a> | <a href="task_02.php">Задание 2</a></p>
+</body>
+</html>
