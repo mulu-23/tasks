@@ -4,7 +4,7 @@
 
 ## Содержание 
 - [arrays](https://github.com/Dotkulov/php/blob/main/Введение/examples/04_arrays.php)
-- [task_01]([https://github.com/Dotkulov/php/blob/main/Введение/tasks/task_01.php])
+- [task_01]([[https://github.com/Dotkulov/php/blob/main/Введение/tasks/task_01.php]](https://github.com/mulu-23/tasks/blob/main/task_01.php))
 - [task_02]([https://github.com/Dotkulov/php/blob/main/Введение/tasks/task_02.php])
 - [Контрольная точка №1](https://github.com/Dotkulov/php/blob/main/KT1/)
 - [Контрольная точка №2](https://github.com/Dotkulov/php/blob/main/KT2/)   
